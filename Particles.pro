@@ -23,21 +23,36 @@ INCLUDEPATH += /usr/include/eigen3/
 LIBS += -lGLEW
 
 SOURCES += \
+    camera.cpp \
+    forcegravity.cpp \
     main.cc \
     main_window.cc \
-    glwidget.cc
+    glwidget.cc \
+    mesh.cpp \
+    particle.cpp \
+    particles_system.cpp \
+    solver_euler.cpp \
+    solver_implicit_euler.cpp \
+    util.cpp
 
 HEADERS  += \
+    camera.h \
+    collider.h \
+    force_field.h \
+    forcegravity.h \
     main_window.h \
-    glwidget.h
+    glwidget.h \
+    mesh.h \
+    particle.h \
+    particles_system.h \
+    solver.h \
+    solver_euler.h \
+    solver_implicit_euler.h \
+    util.h
 
 FORMS    += \
     main_window.ui
 
-OTHER_FILES +=
-
-DISTFILES += \
-    shaders/phong.frag \
-    shaders/phong.vert
-
-
+RESOURCES += \
+    shader/particle.frag \
+    shader/particle.vert
