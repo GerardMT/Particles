@@ -1,9 +1,7 @@
 #include "solver_implicit_euler.h"
 
-void SolverImplicitEuler::solve(float dt, vector<Particle> particles)
+void SolverImplicitEuler::solve(float dt, Particle &p) const
 {
-    for (auto par : particles) {
-        par.vel_ = par.vel_ + dt * par.force_ / par.mass_;
-        par.pos_ = par.pos_ + dt * par.vel_;
-    }
+    p.vel_ = p.vel_ + dt * p.force_ / p.mass_;
+    p.pos_ = p.pos_ + dt * p.vel_;
 }

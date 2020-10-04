@@ -1,6 +1,6 @@
-#version 330 core
+#version 330
 
-int vec3 quad_coord;
+smooth in vec2 quad_coord;
 
 out vec4 frag_color;
 
@@ -11,5 +11,5 @@ void main()
 {
     float col = smoothstep(radius, radius - blur, abs(length(quad_coord - vec2(0.5, 0.5))));
 
-    fragColor = vec4(col);
+    frag_color = vec4(col);
 }

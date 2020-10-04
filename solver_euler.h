@@ -6,7 +6,7 @@
 class SolverEuler : public Solver
 {
 public:
-    void solve(float dt, vector<Particle> &particles) override;
+    void solve(float dt, Particle &p) const override;
 };
 
 #endif // SOLVEREULER_H

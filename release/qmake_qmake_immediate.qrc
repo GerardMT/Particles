@@ -1,0 +1,6 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/">
+<file alias="shader/particle.frag">/home/gerard/Documents/MIRI/CA/Homework 1/Particles/shader/particle.frag</file>
+<file alias="shader/particle.vert">/home/gerard/Documents/MIRI/CA/Homework 1/Particles/shader/particle.vert</file>
+</qresource>
+</RCC>

@@ -1,14 +1,12 @@
 #ifndef SOLVERIMPLICITEULER_H
 #define SOLVERIMPLICITEULER_H
 
-#import "solver.h"
-
-using namespace std;
+#include "solver.h"
 
 class SolverImplicitEuler : public Solver
 {
 public:
-    void solve(float dt, vector<Particle> particles) override;
+    void solve(float dt, Particle &p) const override;
 };
 
 #endif // SOLVERIMPLICITEULER_H

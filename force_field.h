@@ -3,13 +3,12 @@
 
 #include "particle.h"
 
-#include <vector>
-
-using namespace std;
-
 class ForceField
 {
-    virtual void apply(vector<Particle> &particles) const = 0;
+public:
+    virtual ~ForceField() {};
+
+    virtual void apply(Particle &p) const = 0;
 };
 
 #endif // FORCEFIELD_H

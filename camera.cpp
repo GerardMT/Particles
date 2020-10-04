@@ -2,7 +2,8 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 
-void Camera::compute_view_projection() {
+void Camera::compute_view_projection()
+{
     glm::mat4 view = glm::lookAt(pos_, pos_ + front_, UP_);
 
     float ratio_ = static_cast<float>(width_) / static_cast<float>(height_);
@@ -11,25 +12,38 @@ void Camera::compute_view_projection() {
     view_projection = projection * view;
 }
 
-void Camera::forward(float d_time) {
-    pos_ += d_time * speed_ * front_;
+void Camera::lookAt(glm::vec3 pos)
+{
+    front_ = glm::normalize(pos - pos_);
+
+    yaw_ = acos(pos.z);
+    pitch_ = atan(pos.y / pos.x);
 }
 
-void Camera::backwards(float d_time) {
-    pos_ -= d_time * speed_ * front_;
+void Camera::forward(float dt)
+{
+    pos_ += dt * speed_ * front_;
 }
 
-void Camera::left(float d_time) {
-    pos_ -= d_time * speed_ * right_;
+void Camera::backwards(float dt)
+{
+    pos_ -= dt * speed_ * front_;
 }
 
-void Camera::right(float d_time) {
-    pos_ += d_time * speed_ * right_;
+void Camera::left(float dt)
+{
+    pos_ -= dt * speed_ * right_;
 }
 
-void Camera::rotate(int x, int y, float d_time) {
-    yaw_ += x * d_time * sensitivity_;
-    pitch_ -= y * d_time * sensitivity_;
+void Camera::right(float dt)
+{
+    pos_ += dt * speed_ * right_;
+}
+
+void Camera::rotate(int x, int y, float dt)
+{
+    yaw_ += x * dt * sensitivity_;
+    pitch_ -= y * dt * sensitivity_;
 
     if (pitch_ > 89.0f) {
         pitch_ = 89.0f;
@@ -45,6 +59,7 @@ void Camera::rotate(int x, int y, float d_time) {
     right_ = glm::normalize(glm::cross(front_, UP_));
 }
 
-void Camera::viewport() const {
+void Camera::viewport() const
+{
     glViewport(0, 0, width_, height_);
 }

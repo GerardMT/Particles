@@ -6,26 +6,33 @@
 #include <QOpenGLShaderProgram>
 #include <vector>
 
-#include "camera.h"
 #include "collider.h"
 #include "force_field.h"
+#include "paint_gl.h"
 #include "particle.h"
+#include "particle_initializer.h"
 #include "solver.h"
 
 using namespace std;
 
-class ParticlesSystem
+class ParticleSystem : public PaintGL
 {
 public:
-    ParticlesSystem(Solver *solver, unsigned int n);
+    ParticleSystem(Solver &s, ParticleInitializer &i, unsigned int n);
+
+    ~ParticleSystem();
 
     void add_force_field(const ForceField* f);
 
     void add_collider(const Collider *c);
 
-    void initialieGL();
+    void solver(Solver &s);
 
-    void paintGL(float dt, const Camera &camera);
+    void particleInitializer(ParticleInitializer &i);
+
+    void initialieGL() override;
+
+    void paintGL(float dt, const Camera &camera) override;
 
 private:
     vector<Particle> particles_;
@@ -34,11 +41,14 @@ private:
     vector<const ForceField *> force_fields_;
     vector<const Collider *> collliders_;
 
-    QOpenGLShaderProgram particles_program_;
+    ParticleInitializer *initializer_;
 
-    GLuint particles_vao_;
-    GLuint particles_vbo_;
-    GLuint particles_tbo_;
+    QOpenGLShaderProgram program_;
+
+    GLuint vao_;
+    GLuint vbo_;
+    GLuint tbo_;
+    GLuint cdbo_;
 };
 
 #endif // PARTICLESSYSTEM_H

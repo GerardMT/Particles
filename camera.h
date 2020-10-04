@@ -29,17 +29,17 @@ public:
     float speed_ = 5.0;
     float sensitivity_ = 10.0;
 
-    void position(glm::vec3 p);
+    void lookAt(glm::vec3 pos);
 
-    void forward(float d_time);
+    void forward(float dt);
 
-    void backwards(float d_time);
+    void backwards(float dt);
 
-    void left(float d_time);
+    void left(float dt);
 
-    void right(float d_time);
+    void right(float dt);
 
-    void rotate(int x, int y, float d_time);
+    void rotate(int x, int y, float dt);
 
     void compute_view_projection();
 

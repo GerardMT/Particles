@@ -1,4 +1,4 @@
-QT       += core gui opengl
+QT += core gui opengl
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -24,13 +24,17 @@ LIBS += -lGLEW
 
 SOURCES += \
     camera.cpp \
-    forcegravity.cpp \
+    force_field_gravity.cpp \
     main.cc \
     main_window.cc \
     glwidget.cc \
     mesh.cpp \
+    object.cpp \
     particle.cpp \
-    particles_system.cpp \
+    particle_initializer.cpp \
+    particle_initializer_fountain.cpp \
+    particle_initializer_waterfall.cpp \
+    particle_system.cpp \
     solver_euler.cpp \
     solver_implicit_euler.cpp \
     util.cpp
@@ -39,12 +43,17 @@ HEADERS  += \
     camera.h \
     collider.h \
     force_field.h \
-    forcegravity.h \
+    force_field_gravity.h \
     main_window.h \
     glwidget.h \
     mesh.h \
+    object.h \
+    paint_gl.h \
     particle.h \
-    particles_system.h \
+    particle_initializer.h \
+    particle_initializer_fountain.h \
+    particle_initializer_waterfall.h \
+    particle_system.h \
     solver.h \
     solver_euler.h \
     solver_implicit_euler.h \
@@ -56,3 +65,7 @@ FORMS    += \
 RESOURCES += \
     shader/particle.frag \
     shader/particle.vert
+
+DISTFILES += \
+    shader/object.frag \
+    shader/object.vert

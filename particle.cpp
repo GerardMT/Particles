@@ -1,5 +1,7 @@
 #include "particle.h"
 
+Particle::Particle() {}
+
 Particle::Particle(glm::vec3 pos, glm::vec3 vel, float mass)
 {
     pos_ = pos;
