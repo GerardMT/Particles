@@ -8,7 +8,9 @@ class Collider
 public:
     virtual ~Collider() {};
 
-    virtual void collide(Particle &p) const = 0;
+    virtual bool collide(Particle &p) const = 0;
+
+    virtual void correct(Particle &p) const = 0;
 };
 
 #endif // COLLIDER_H

@@ -11,6 +11,7 @@ public:
     Particle(glm::vec3 pos, glm::vec3 vel, float mass);
 
     glm::vec3 pos_;
+    glm::vec3 pos_pre_;
     glm::vec3 vel_;
 
     float mass_;

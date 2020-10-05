@@ -24,6 +24,10 @@ LIBS += -lGLEW
 
 SOURCES += \
     camera.cpp \
+    collider_plane.cpp \
+    collider_polygon.cpp \
+    collider_sphere.cpp \
+    collider_triangle.cpp \
     force_field_gravity.cpp \
     main.cc \
     main_window.cc \
@@ -42,6 +46,10 @@ SOURCES += \
 HEADERS  += \
     camera.h \
     collider.h \
+    collider_plane.h \
+    collider_polygon.h \
+    collider_sphere.h \
+    collider_triangle.h \
     force_field.h \
     force_field_gravity.h \
     main_window.h \
