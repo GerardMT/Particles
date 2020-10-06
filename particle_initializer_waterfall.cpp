@@ -7,10 +7,9 @@ ParticleInitializerWaterfall::ParticleInitializerWaterfall(glm::vec3 pos, float 
     spread_ = spread;
 }
 
-void ParticleInitializerWaterfall::initialize(Particle &p)
+void ParticleInitializerWaterfall::initialize(float dt, Particle &p)
 {
     p.pos_ = pos_;
-    p.pos_pre_ = pos_;
 
     float i = M_PI / 2.0 + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (M_PI / 2.0 * spread_)));
     float a = static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (2.0 * M_PI)));
@@ -19,8 +18,7 @@ void ParticleInitializerWaterfall::initialize(Particle &p)
     p.vel_.z = speed_ * sin(i) * sin(a);
     p.vel_.y = speed_ * cos(i);
 
-    const float mass_l = 0.1;
-    const float mass_h = 0.5;
+    p.pos_pre_ = pos_ - dt * p.vel_;
 
-    p.mass_ = mass_l + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (mass_h - mass_l)));
+    p.mass_ = mass_min_ + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (mass_max_ - mass_min_)));
 }

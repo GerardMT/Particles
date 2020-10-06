@@ -8,7 +8,7 @@ class ParticleInitializer
 public:
     virtual ~ParticleInitializer() {};
 
-    virtual void initialize(Particle &p) = 0;
+    virtual void initialize(float dt, Particle &p) = 0;
 };
 
 #endif // PARTICLEINITIALIZER_H

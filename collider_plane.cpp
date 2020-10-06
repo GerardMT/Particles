@@ -8,6 +8,7 @@ ColliderPlane::ColliderPlane(glm::vec3 normal, glm::vec3 point, float bouncing, 
 {
     n_ = normal;
     d_ = -glm::dot(normal, point);
+    p_ = point;
 
     bouncing_ = bouncing;
     b_ = 1.0 + bouncing;
@@ -17,6 +18,9 @@ ColliderPlane::ColliderPlane(glm::vec3 normal, glm::vec3 point, float bouncing, 
 
 bool ColliderPlane::collide(Particle &p)
 {
+    glm::vec3 l_v = p.pos_ - p.pos_pre_;
+    float d = glm::dot(p_ - p.pos_pre_ , n_) / glm::dot(l_v, n_);
+    //return d >= 0 && d <= 1;
     return glm::dot(n_, p.pos_ + d_) * (glm::dot(n_, p.pos_pre_) + d_) <= 0;
 }
 

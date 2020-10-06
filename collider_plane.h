@@ -19,6 +19,8 @@ public:
     void bouncing(float b);
 
     glm::vec3 n_;
+    glm::vec3 p_;
+
     float d_;
 
     float friction_;

@@ -22,6 +22,8 @@ public:
 
     ~ParticleSystem();
 
+    void nParticles(unsigned int n);
+
     void addForceField(ForceField &f);
 
     void addCollider(Collider &c);
@@ -34,14 +36,14 @@ public:
 
     void paintGL(float dt, const Camera &camera) override;
 
+    float life_time_;
+
 private:
     vector<Particle> particles_;
 
     const Solver *solver_;
     vector<ForceField *> force_fields_;
     vector<Collider *> collliders_;
-
-    float life_time_;
 
     ParticleInitializer *initializer_;
 

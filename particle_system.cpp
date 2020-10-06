@@ -39,6 +39,18 @@ ParticleSystem::~ParticleSystem()
     }
 }
 
+void ParticleSystem::nParticles(unsigned int n)
+{
+    unsigned int n_pre = particles_.size();
+    particles_.resize(n);
+
+    if (n > n_pre) {
+        for (unsigned int i = n_pre - 1; i < particles_.size(); ++i) {
+            particles_[i].life_time_ = 0.0f;
+        }
+    }
+}
+
 void ParticleSystem::addForceField(ForceField &f)
 {
     force_fields_.push_back(&f);
@@ -114,7 +126,7 @@ void ParticleSystem::paintGL(float dt, const Camera &camera)
         p.life_time_ -= dt;
         if (p.life_time_ <= 0.0 && revived <= revived_max) {
             p.life_time_ = life_time_;
-            initializer_->initialize(p);
+            initializer_->initialize(dt, p);
             ++revived;
         }
 

@@ -4,9 +4,11 @@
 #include "collider_sphere.h"
 #include "collider_triangle.h"
 #include "particle_initializer_fountain.h"
+#include "particle_initializer_semi_sphere.h"
 #include "particle_initializer_waterfall.h"
 #include "solver_euler.h"
 #include "solver_implicit_euler.h"
+#include "solver_verlet.h"
 
 #include <QTimer>
 #include <fstream>
@@ -60,9 +62,11 @@ void GLWidget::initializeGL()
 
     solver_euler_ = new SolverEuler();
     solver_implicit_euler_ = new SolverImplicitEuler();
+    solver_verlet_ = new SolverVerlet();
 
     particle_initializer_fountain_ = new ParticleInitializerFountain(glm::vec3(0.0, -0.9, 0.0), 6.0, 0.2);
     particle_initializer_waterfall_ = new ParticleInitializerWaterfall(glm::vec3(0.0, 0.75, 0.0), 0.5, 0.8);
+    particle_initializer_semi_sphere_ = new ParticleInitializerSemiSphere(glm::vec3(0.0, 0.75, 0.0), 4.0, 0.25);
 
     particles_system_ = new ParticleSystem(*solver_euler_, *particle_initializer_fountain_, 500, 60.0);
     paint_gl_.push_back(particles_system_);
@@ -133,9 +137,11 @@ void GLWidget::initializeGL()
         p->initialieGL();
     }
 
+    target_frame_time_ = 1.0 / 60.0;
+
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
-    timer->start(1.0 / 60.0 * 1000.0);
+    timer->start(target_frame_time_);
 }
 
 #pragma GCC diagnostic push
@@ -220,7 +226,12 @@ void GLWidget::resizeGL(int w, int h)
 
 void GLWidget::paintGL() {
     chrono::steady_clock::time_point time_now = chrono::steady_clock::now();
-    dt_ = chrono::duration_cast<chrono::nanoseconds>(time_now - time_last_).count() * 1e-9;
+    if (first_paint_) {
+        first_paint_ = false;
+        dt_ = target_frame_time_;
+    }else {
+        dt_ = chrono::duration_cast<chrono::nanoseconds>(time_now - time_last_).count() * 1e-9;
+    }
 
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -240,7 +251,7 @@ void GLWidget::paintGL() {
 
     camera_.compute_view_projection();
 
-    dt_ = 0.01; // TODO DEBUG
+    //dt_ = 0.01; // TODO DEBUG
 
     //cout << camera_.azimuth_ << " " << camera_.inclination_ << endl;
     //cout << camera_.front_.x << " " << camera_.front_.y << " " << camera_.front_.z << endl;
@@ -266,6 +277,13 @@ void GLWidget::uiSolverImplicitEuler(bool v)
     }
 }
 
+void GLWidget::uiSolverVerlet(bool v)
+{
+    if (v) {
+        particles_system_->solver(*solver_verlet_);
+    }
+}
+
 void GLWidget::uiParticleInitializerFountain(bool v)
 {
     if (v) {
@@ -278,4 +296,21 @@ void GLWidget::uiParticleInitializerWatterfall(bool v)
     if (v) {
         particles_system_->particleInitializer(*particle_initializer_waterfall_);
     }
+}
+
+void GLWidget::uiParticleInitializerSemiSphere(bool v)
+{
+    if (v) {
+        particles_system_->particleInitializer(*particle_initializer_semi_sphere_);
+    }
+}
+
+void GLWidget::uiNParticles(int n)
+{
+    particles_system_->nParticles(n);
+}
+
+void GLWidget::uiLifetme(double t)
+{
+    particles_system_->life_time_ = t;
 }

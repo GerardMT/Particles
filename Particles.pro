@@ -37,10 +37,12 @@ SOURCES += \
     object.cpp \
     particle.cpp \
     particle_initializer_fountain.cpp \
+    particle_initializer_semi_sphere.cpp \
     particle_initializer_waterfall.cpp \
     particle_system.cpp \
     solver_euler.cpp \
     solver_implicit_euler.cpp \
+    solver_verlet.cpp \
     util.cpp
 
 HEADERS  += \
@@ -62,11 +64,13 @@ HEADERS  += \
     particle.h \
     particle_initializer.h \
     particle_initializer_fountain.h \
+    particle_initializer_semi_sphere.h \
     particle_initializer_waterfall.h \
     particle_system.h \
     solver.h \
     solver_euler.h \
     solver_implicit_euler.h \
+    solver_verlet.h \
     util.h
 
 FORMS    += \

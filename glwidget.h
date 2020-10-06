@@ -47,9 +47,11 @@ private:
 
     Solver *solver_euler_;
     Solver *solver_implicit_euler_;
+    Solver *solver_verlet_;
 
     ParticleInitializer *particle_initializer_fountain_;
     ParticleInitializer *particle_initializer_waterfall_;
+    ParticleInitializer *particle_initializer_semi_sphere_;
 
     ParticleSystem *particles_system_;
 
@@ -71,14 +73,25 @@ private:
     bool left_ = false;
     bool right_ = false;
 
+    bool first_paint_ = true;
+    float target_frame_time_;
+
 private slots:
     void uiSolverEuler(bool v);
 
     void uiSolverImplicitEuler(bool v);
 
+    void uiSolverVerlet(bool v);
+
     void uiParticleInitializerFountain(bool v);
 
     void uiParticleInitializerWatterfall(bool v);
+
+    void uiParticleInitializerSemiSphere(bool v);
+
+    void uiNParticles(int n);
+
+    void uiLifetme(double t);
 };
 
 #endif  //  GLWIDGET_H_
