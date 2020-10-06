@@ -61,7 +61,7 @@ bool ColliderPolygon::collide(Particle &p)
     return n_inter % 2 == 1;
 }
 
-void ColliderPolygon::correct(Particle &p)
+void ColliderPolygon::correct(float dt, Particle &p)
 {
-    collider_plane_.correct(p);
+    collider_plane_.correct(dt, p);
 }

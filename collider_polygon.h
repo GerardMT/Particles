@@ -15,7 +15,7 @@ public:
 
     bool collide(Particle &p) override;
 
-    void correct(Particle &p) override;
+    void correct(float dt, Particle &p) override;
 
 private:
     ColliderPlane collider_plane_;

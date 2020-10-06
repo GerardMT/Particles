@@ -38,7 +38,7 @@ bool ColliderTriangle::collide(Particle &p)
     }
 }
 
-void ColliderTriangle::correct(Particle &p)
+void ColliderTriangle::correct(float dt, Particle &p)
 {
-    collider_plane_.correct(p);
+    collider_plane_.correct(dt, p);
 }

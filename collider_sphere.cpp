@@ -37,10 +37,10 @@ bool ColliderSphere::collide(Particle &p)
     }
 }
 
-void ColliderSphere::correct(Particle &p)
+void ColliderSphere::correct(float dt, Particle &p)
 {
     glm::vec3 n = glm::normalize(i_ - center_);
 
     ColliderPlane collidrPlane(n, i_, bouncing_, friction_);
-    collidrPlane.correct(p);
+    collidrPlane.correct(dt, p);
 }

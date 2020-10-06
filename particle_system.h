@@ -20,8 +20,6 @@ class ParticleSystem : public PaintGL
 public:
     ParticleSystem(Solver &s, ParticleInitializer &i, unsigned int n, float life_time_);
 
-    ~ParticleSystem();
-
     void nParticles(unsigned int n);
 
     void addForceField(ForceField &f);

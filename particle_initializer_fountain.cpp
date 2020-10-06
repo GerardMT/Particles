@@ -11,7 +11,7 @@ ParticleInitializerFountain::ParticleInitializerFountain(glm::vec3 pos, float sp
 
 void ParticleInitializerFountain::initialize(float dt, Particle &p)
 {
-    p.pos_ = pos_;
+    p.pos_pre_ = pos_;
 
     float i = static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (M_PI / 2.0 * spread_)));
     float a = static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (2.0 * M_PI)));
@@ -20,7 +20,7 @@ void ParticleInitializerFountain::initialize(float dt, Particle &p)
     p.vel_.z = speed_ * sin(i) * sin(a);
     p.vel_.y = speed_ * cos(i);
 
-    p.pos_pre_ = pos_ - dt * p.vel_;
-
     p.mass_ = mass_min_ + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (mass_max_ - mass_min_)));
+
+    p.pos_ = p.pos_pre_ + dt * p.vel_;
 }

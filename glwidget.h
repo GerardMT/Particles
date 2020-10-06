@@ -91,7 +91,7 @@ private slots:
 
     void uiNParticles(int n);
 
-    void uiLifetme(double t);
+    void uiLifetime(double t);
 };
 
 #endif  //  GLWIDGET_H_

@@ -9,7 +9,7 @@ public:
     void solve(float dt, Particle &p) const override;
 
 private:
-    const float k_ = 0.9f;
+    const float k_ = 1.0f;
 };
 
 #endif // SOLVERVERLET_H

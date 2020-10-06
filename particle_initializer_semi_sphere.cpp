@@ -17,10 +17,10 @@ void ParticleInitializerSemiSphere::initialize(float dt, Particle &p)
     s.y = cos(i);
     s.z = sin(i) * sin(a);
 
-    p.pos_ = radius_ * s;
+    p.pos_pre_ = radius_ * s;
     p.vel_ = speed_ * s;
 
-    p.pos_pre_ = pos_ - dt * p.vel_;
-
     p.mass_ = mass_min_ + static_cast<float>(rand()) / (static_cast<float>(RAND_MAX / (mass_max_ - mass_min_)));
+
+    p.pos_ = p.pos_pre_ + dt * p.vel_;
 }

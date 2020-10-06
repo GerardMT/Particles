@@ -6,7 +6,6 @@
 #include <limits>
 #include <string>
 #include <fstream>
-#include <iostream>
 #include <algorithm>
 #include <set>
 #include <vector>
@@ -39,10 +38,6 @@ bool ReadPlyHeader(ifstream *fin, int *vertices, int *faces, bool &binary) {
   }
 
   if (*vertices <= 0) return false;
-
-  cout << "Loading triangle mesh" << endl;
-  cout << "\tVertices = " << *vertices << endl;
-  cout << "\tFaces = " << *faces << endl;
 
   return true;
 }

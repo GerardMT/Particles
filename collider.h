@@ -10,7 +10,7 @@ public:
 
     virtual bool collide(Particle &p) = 0;
 
-    virtual void correct(Particle &p) = 0; // TODO Remove
+    virtual void correct(float dt, Particle &p) = 0; // TODO Remove
 };
 
 #endif // COLLIDER_H

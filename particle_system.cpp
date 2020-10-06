@@ -22,21 +22,11 @@ ParticleSystem::ParticleSystem(Solver &s, ParticleInitializer &i, unsigned int n
     particles_.resize(n);
 
     for (auto &p : particles_) {
-        p.life_time_ = 0.0f;
+        p.life_time_ = life_time;
     }
 
     initializer_ = &i;
     life_time_ = life_time;
-}
-
-ParticleSystem::~ParticleSystem()
-{
-    for (auto f : force_fields_) {
-        delete f;
-    }
-    for (auto c : collliders_) {
-        delete c;
-    }
 }
 
 void ParticleSystem::nParticles(unsigned int n)
@@ -46,7 +36,7 @@ void ParticleSystem::nParticles(unsigned int n)
 
     if (n > n_pre) {
         for (unsigned int i = n_pre - 1; i < particles_.size(); ++i) {
-            particles_[i].life_time_ = 0.0f;
+            particles_[i].life_time_ = life_time_;
         }
     }
 }
@@ -119,31 +109,33 @@ void ParticleSystem::paintGL(float dt, const Camera &camera)
     for (auto &p : particles_) {
         p.force_ = glm::vec3(0.0);
 
-        if (glm::length(p.pos_ - p.pos_pre_) < 0.001) {
-            p.life_time_ = 0.0f;
-        }
-
-        p.life_time_ -= dt;
-        if (p.life_time_ <= 0.0 && revived <= revived_max) {
-            p.life_time_ = life_time_;
+        p.life_time_ += dt;
+        if (p.life_time_ >= life_time_ && revived <= revived_max) {
+            p.life_time_ = 0;
             initializer_->initialize(dt, p);
             ++revived;
         }
 
-        if (p.life_time_ > 0.0) {
+        if (p.life_time_ < life_time_) {
             ++n_alive;
+
+            glm::vec3 pos = p.pos_;
 
             for (auto &f : force_fields_) {
                 f->apply(p);
             }
 
+            solver_->solve(dt, p);
+
             for (auto &c : collliders_) {
                 if(c->collide(p)) {
-                    c->correct(p);
+                    c->correct(dt, p);
                 }
             }
 
-            solver_->solve(dt, p);
+            if (glm::length(p.pos_ - pos) < 0.001) {
+                p.life_time_ = life_time_;
+            }
         }
     }
 
@@ -161,7 +153,7 @@ void ParticleSystem::paintGL(float dt, const Camera &camera)
 
     unsigned int n = 0;
     for (unsigned int i = 0; i < particles_.size(); ++i) {
-        if (particles_[i].life_time_ > 0.0f) {
+        if (particles_[i].life_time_ < life_time_) {
             particles_alive[n].pos = particles_[i].pos_;
             glm::vec3 v = particles_[i].pos_ - camera.pos_;
             particles_alive[n].camera_dir = glm::normalize(v);
