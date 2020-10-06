@@ -37,7 +37,7 @@ public:
      * @param mesh The resulting representation with computed per-vertex normals.
      * @return Whether it was able to read the file.
      */
-    static bool ReadFromPly(const string &filename, Mesh &mesh);
+    static void ReadFromPly(const string &filename, Mesh &mesh);
 };
 
 #endif // MESH_H

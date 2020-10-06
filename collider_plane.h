@@ -10,9 +10,9 @@ public:
 
     ColliderPlane(glm::vec3 normal, glm::vec3 point, float bouncing, float friction);
 
-    bool collide(Particle &p) const override;
+    bool collide(Particle &p) override;
 
-    void correct(Particle &p) const override;
+    void correct(Particle &p) override;
 
     float bounding();
 

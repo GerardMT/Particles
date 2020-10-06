@@ -3,14 +3,14 @@
 
 #include "collider_plane.h"
 
-class ColliderTriangle : Collider
+class ColliderTriangle : public Collider
 {
 public:
     ColliderTriangle(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3, float bouncing, float friction);
 
-    bool collide(Particle &p) const override;
+    bool collide(Particle &p) override;
 
-    void correct(Particle &p) const override;
+    void correct(Particle &p) override;
 
 private:
     ColliderPlane collider_plane_;

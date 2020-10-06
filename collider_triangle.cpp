@@ -19,7 +19,7 @@ float area(glm::vec3 i, glm::vec3 j, glm::vec3 k)
      return 0.5 * glm::length(glm::cross(j - i, k - i));
 }
 
-bool ColliderTriangle::collide(Particle &p) const
+bool ColliderTriangle::collide(Particle &p)
 {
     if (collider_plane_.collide(p)) {
         glm::vec3 l_v = p.pos_ - p.pos_pre_;
@@ -31,13 +31,14 @@ bool ColliderTriangle::collide(Particle &p) const
         float l_d = glm::dot(p1_ - p.pos_pre_, collider_plane_.n_) / glm::dot(l_v, collider_plane_.n_);
 
         glm::vec3 i = p.pos_pre_ + l_v * l_d;
-        return area(i, p2_, p3_) + area(p1_, i, p3_) + area(p1_, p2_, i) - area_;
+
+        return area(i, p2_, p3_) + area(p1_, i, p3_) + area(p1_, p2_, i) <= area_;
     } else {
         return false;
     }
 }
 
-void ColliderTriangle::correct(Particle &p) const
+void ColliderTriangle::correct(Particle &p)
 {
     collider_plane_.correct(p);
 }

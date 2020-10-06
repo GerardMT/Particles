@@ -9,9 +9,9 @@ class ColliderSphere : public Collider
 public:
     ColliderSphere(glm::vec3 center, float radius, float bouncing, float friction);
 
-    bool collide(Particle &p) const override;
+    bool collide(Particle &p) override;
 
-    void correct(Particle &p) const override;
+    void correct(Particle &p) override;
 
     float bouncing_;
     float friction_;
@@ -19,6 +19,8 @@ public:
 private:
     glm::vec3 center_;
     float radius_;
+
+    glm::vec3 i_;
 };
 
 #endif // COLLIDERSPHERE_H

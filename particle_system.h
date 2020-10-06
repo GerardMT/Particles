@@ -18,13 +18,13 @@ using namespace std;
 class ParticleSystem : public PaintGL
 {
 public:
-    ParticleSystem(Solver &s, ParticleInitializer &i, unsigned int n);
+    ParticleSystem(Solver &s, ParticleInitializer &i, unsigned int n, float life_time_);
 
     ~ParticleSystem();
 
-    void add_force_field(const ForceField* f);
+    void addForceField(ForceField &f);
 
-    void add_collider(const Collider *c);
+    void addCollider(Collider &c);
 
     void solver(Solver &s);
 
@@ -38,8 +38,10 @@ private:
     vector<Particle> particles_;
 
     const Solver *solver_;
-    vector<const ForceField *> force_fields_;
-    vector<const Collider *> collliders_;
+    vector<ForceField *> force_fields_;
+    vector<Collider *> collliders_;
+
+    float life_time_;
 
     ParticleInitializer *initializer_;
 

@@ -11,7 +11,7 @@ ColliderSphere::ColliderSphere(glm::vec3 center, float radius, float bouncing, f
     friction_ = friction;
 }
 
-bool ColliderSphere::collide(Particle &p) const
+bool ColliderSphere::collide(Particle &p)
 {
     glm::vec3 l_v = p.pos_ - p.pos_pre_;
 
@@ -24,18 +24,23 @@ bool ColliderSphere::collide(Particle &p) const
 
     float l_1 = c_2 / (-b + s);
     if (l_1 >= 0.0f && l_1 <= 1.0f) {
+        i_ = p.pos_pre_ + l_1 * l_v;
         return true;
     } else {
         float l_2 = c_2 / (-b - s);
-        return l_2 >= 0.0f && l_2 <= 1.0f;
+        if (l_2 >= 0.0f && l_2 <= 1.0f) {
+            i_ = p.pos_pre_ + l_2 * l_v;
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 
-void ColliderSphere::correct(Particle &p) const
+void ColliderSphere::correct(Particle &p)
 {
-    glm::vec3 n = glm::normalize(p.pos_ - center_);
-    glm::vec3 i = n * radius_;
+    glm::vec3 n = glm::normalize(i_ - center_);
 
-    ColliderPlane collidrPlane(n, i, bouncing_, friction_);
+    ColliderPlane collidrPlane(n, i_, bouncing_, friction_);
     collidrPlane.correct(p);
 }

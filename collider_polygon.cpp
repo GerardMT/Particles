@@ -22,7 +22,7 @@ unsigned char vec3MaxDim(glm::vec3 v)
     }
 }
 
-bool ColliderPolygon::collide(Particle &p) const
+bool ColliderPolygon::collide(Particle &p)
 {
     glm::vec3 l_v = p.pos_ - p.pos_pre_;
 
@@ -61,7 +61,7 @@ bool ColliderPolygon::collide(Particle &p) const
     return n_inter % 2 == 1;
 }
 
-void ColliderPolygon::correct(Particle &p) const
+void ColliderPolygon::correct(Particle &p)
 {
     collider_plane_.correct(p);
 }

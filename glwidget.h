@@ -2,6 +2,8 @@
 #define GLWIDGET_H_
 
 #include "camera.h"
+#include "force_field_drag.h"
+#include "force_field_gravity.h"
 #include "object.h"
 #include "particle_system.h"
 #include "solver.h"
@@ -22,6 +24,16 @@ public:
     ~GLWidget();
 
 protected:
+    void mousePressEvent(QMouseEvent *event) override;
+
+    void mouseMoveEvent(QMouseEvent *event) override;
+
+    void mouseReleaseEvent(QMouseEvent *event) override;
+
+    void keyPressEvent(QKeyEvent *event) override;
+
+    void keyReleaseEvent(QKeyEvent *event) override;
+
     void initializeGL() override;
 
     void resizeGL(int w, int h) override;
@@ -41,11 +53,23 @@ private:
 
     ParticleSystem *particles_system_;
 
+    ForceFieldGravity *force_field_gravity_;
+    ForceFieldDrag *force_field_drag_;
+
     vector<PaintGL*> paint_gl_;
+
+    float dt_;
 
     chrono::steady_clock::time_point  time_last_;
 
-    const glm::vec3 GRAVITY_ = glm::vec3(0.0, -9.8, 0.0);
+    bool rotate_ = false;
+    int rotate_last_x_;
+    int rotate_last_y_;
+
+    bool forward_ = false;
+    bool backwards_ = false;
+    bool left_ = false;
+    bool right_ = false;
 
 private slots:
     void uiSolverEuler(bool v);

@@ -6,8 +6,8 @@ void Camera::compute_view_projection()
 {
     glm::mat4 view = glm::lookAt(pos_, pos_ + front_, UP_);
 
-    float ratio_ = static_cast<float>(width_) / static_cast<float>(height_);
-    glm::mat4 projection = glm::perspective(fov_y_, ratio_, near_, far_);
+    float ratio = static_cast<float>(width_) / static_cast<float>(height_);
+    glm::mat4 projection = glm::perspective(fov_y_, ratio, near_, far_);
 
     view_projection = projection * view;
 }
@@ -15,9 +15,10 @@ void Camera::compute_view_projection()
 void Camera::lookAt(glm::vec3 pos)
 {
     front_ = glm::normalize(pos - pos_);
+    right_ = glm::normalize(glm::cross(front_, UP_));
 
-    yaw_ = acos(pos.z);
-    pitch_ = atan(pos.y / pos.x);
+    inclination_= glm::degrees(acos(front_.y));
+    azimuth_ = glm::degrees(atan(front_.z / front_.x));
 }
 
 void Camera::forward(float dt)
@@ -42,19 +43,22 @@ void Camera::right(float dt)
 
 void Camera::rotate(int x, int y, float dt)
 {
-    yaw_ += x * dt * sensitivity_;
-    pitch_ -= y * dt * sensitivity_;
+    azimuth_ += x * dt * sensitivity_ ;
+    inclination_ += y * dt * sensitivity_;
 
-    if (pitch_ > 89.0f) {
-        pitch_ = 89.0f;
+    if (inclination_ > 180.0f) {
+        inclination_ = 179.0f;
     }
-    if (pitch_ < -89.0f) {
-        pitch_ = -89.0f;
+    if (inclination_ < 0.1f) {
+        inclination_ = 0.1f;
     }
 
-    front_.x = cos(glm::radians(yaw_)) * cos(glm::radians(pitch_));
-    front_.y = sin(glm::radians(pitch_));
-    front_.z = sin(glm::radians(yaw_)) * cos(glm::radians(pitch_));
+    azimuth_ = azimuth_ - 360.0f * floor(azimuth_ / 360.0f);
+    inclination_ = inclination_ - 180.0f * floor(inclination_ / 180.0f);
+
+    front_.x = sin(glm::radians(inclination_)) * cos(glm::radians(azimuth_));
+    front_.y = cos(glm::radians(inclination_));
+    front_.z = sin(glm::radians(inclination_)) * sin(glm::radians(azimuth_));
 
     right_ = glm::normalize(glm::cross(front_, UP_));
 }

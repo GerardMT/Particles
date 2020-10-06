@@ -28,6 +28,7 @@ SOURCES += \
     collider_polygon.cpp \
     collider_sphere.cpp \
     collider_triangle.cpp \
+    force_field_drag.cpp \
     force_field_gravity.cpp \
     main.cc \
     main_window.cc \
@@ -35,7 +36,6 @@ SOURCES += \
     mesh.cpp \
     object.cpp \
     particle.cpp \
-    particle_initializer.cpp \
     particle_initializer_fountain.cpp \
     particle_initializer_waterfall.cpp \
     particle_system.cpp \
@@ -44,6 +44,7 @@ SOURCES += \
     util.cpp
 
 HEADERS  += \
+    Transform.h \
     camera.h \
     collider.h \
     collider_plane.h \
@@ -51,6 +52,7 @@ HEADERS  += \
     collider_sphere.h \
     collider_triangle.h \
     force_field.h \
+    force_field_drag.h \
     force_field_gravity.h \
     main_window.h \
     glwidget.h \

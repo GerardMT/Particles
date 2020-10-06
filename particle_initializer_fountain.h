@@ -6,12 +6,13 @@
 class ParticleInitializerFountain : public ParticleInitializer
 {
 public:
-    ParticleInitializerFountain(glm::vec3 pos);
+    ParticleInitializerFountain(glm::vec3 pos, float speed, float spread);
 
-private:
-    void initializeSpecialization(Particle &p) override;
+    void initialize(Particle &p) override;
 
     glm::vec3 pos_;
+    float speed_;
+    float spread_;
 };
 
 #endif // PARTICLEINITIALIZERFOUNTAIN_H

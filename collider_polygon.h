@@ -13,9 +13,9 @@ class ColliderPolygon : public Collider
 public:
     ColliderPolygon(const vector<glm::vec3> &points, float bouncing, float friction);
 
-    bool collide(Particle &p) const override;
+    bool collide(Particle &p) override;
 
-    void correct(Particle &p) const override;
+    void correct(Particle &p) override;
 
 private:
     ColliderPlane collider_plane_;

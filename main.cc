@@ -7,6 +7,7 @@ int main(int argc, char *argv[])
 {
     QGLFormat fmt;
     fmt.setVersion(3, 3);
+    fmt.setSamples(4);
     fmt.setProfile(QGLFormat::CoreProfile);
     QGLFormat::setDefaultFormat(fmt);
 

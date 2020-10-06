@@ -188,17 +188,17 @@ void ComputeBoundingBox(const vector<float> &vertices, Mesh &mesh) {
   }
 }
 
-bool Mesh::ReadFromPly(const string &filename, Mesh &mesh) {
+void Mesh::ReadFromPly(const string &filename, Mesh &mesh) {
   ifstream fin;
 
   fin.open(filename.c_str(), ios_base::in | ios_base::binary);
-  if (!fin.is_open() || !fin.good()) return false;
+  if (!fin.is_open() || !fin.good()) throw 1;
 
   int vertices = 0, faces = 0;
   bool binary;
   if (!ReadPlyHeader(&fin, &vertices, &faces, binary)) {
     fin.close();
-    return false;
+    throw 1;
   }
 
   mesh.vertices_.resize(static_cast<size_t>(vertices) * 3);
@@ -219,6 +219,4 @@ bool Mesh::ReadFromPly(const string &filename, Mesh &mesh) {
 
   ComputeVertexNormals(mesh.vertices_, mesh.faces_, &mesh.normals_);
   ComputeBoundingBox(mesh.vertices_, mesh);
-
-  return true;
 }

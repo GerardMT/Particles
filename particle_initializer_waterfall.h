@@ -6,12 +6,13 @@
 class ParticleInitializerWaterfall : public ParticleInitializer
 {
 public:
-    ParticleInitializerWaterfall(glm::vec3 pos);
+    ParticleInitializerWaterfall(glm::vec3 pos, float speed, float spread);
 
-private:
-    void initializeSpecialization(Particle &p) override;
+    void initialize(Particle &p) override;
 
     glm::vec3 pos_;
+    float speed_;
+    float spread_;
 };
 
 #endif // PARTICLEINITIALIZERWATERFALL_H

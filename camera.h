@@ -11,13 +11,13 @@ public:
 
     glm::mat4 view_projection;
 
-    glm::vec3 pos_ = glm::vec3(0.0, 0.0, 0.0);
+    glm::vec3 pos_;
 
-    glm::vec3 front_ = glm::vec3(1.0, 0.0, 0.0);
+    glm::vec3 front_;
     glm::vec3 right_;
 
-    float yaw_ = 0.0;
-    float pitch_ = 0.0;
+    float azimuth_;
+    float inclination_;
 
     GLuint width_;
     GLuint height_;
