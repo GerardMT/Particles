@@ -41,7 +41,7 @@ SOURCES += \
     particle_initializer_waterfall.cpp \
     particle_system.cpp \
     solver_euler.cpp \
-    solver_implicit_euler.cpp \
+    solver_semi_implicit_euler.cpp \
     solver_verlet.cpp \
     util.cpp
 
@@ -69,7 +69,7 @@ HEADERS  += \
     particle_system.h \
     solver.h \
     solver_euler.h \
-    solver_implicit_euler.h \
+    solver_semi_implicit_euler.h \
     solver_verlet.h \
     util.h
 

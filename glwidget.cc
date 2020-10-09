@@ -7,7 +7,7 @@
 #include "particle_initializer_semi_sphere.h"
 #include "particle_initializer_waterfall.h"
 #include "solver_euler.h"
-#include "solver_implicit_euler.h"
+#include "solver_semi_implicit_euler.h"
 #include "solver_verlet.h"
 
 #include <QTimer>
@@ -34,7 +34,7 @@ GLWidget::~GLWidget()
     }
 
     delete solver_euler_;
-    delete solver_implicit_euler_;
+    delete solver_semi_implicit_euler_;
 
     delete particle_initializer_fountain_;
     delete particle_initializer_waterfall_;
@@ -61,7 +61,7 @@ void GLWidget::initializeGL()
     paint_gl_.push_back(box);
 
     solver_euler_ = new SolverEuler();
-    solver_implicit_euler_ = new SolverImplicitEuler();
+    solver_semi_implicit_euler_ = new SolverSemiImplicitEuler();
     solver_verlet_ = new SolverVerlet();
 
     particle_initializer_fountain_ = new ParticleInitializerFountain(glm::vec3(0.0, -0.9, 0.0), 5.0, 0.2);
@@ -270,10 +270,10 @@ void GLWidget::uiSolverEuler(bool v)
     }
 }
 
-void GLWidget::uiSolverImplicitEuler(bool v)
+void GLWidget::uiSolverSemiImplicitEuler(bool v)
 {
     if (v) {
-        particles_system_->solver(*solver_implicit_euler_);
+        particles_system_->solver(*solver_semi_implicit_euler_);
     }
 }
 

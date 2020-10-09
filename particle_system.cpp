@@ -130,6 +130,7 @@ void ParticleSystem::paintGL(float dt, const Camera &camera)
             for (auto &c : collliders_) {
                 if(c->collide(p)) {
                     c->correct(dt, p);
+                    break;
                 }
             }
 

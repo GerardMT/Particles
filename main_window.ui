@@ -113,12 +113,12 @@
            <rect>
             <x>10</x>
             <y>60</y>
-            <width>151</width>
+            <width>171</width>
             <height>25</height>
            </rect>
           </property>
           <property name="text">
-           <string>Implicit Euler</string>
+           <string>Semi Implicit Euler</string>
           </property>
          </widget>
          <widget class="QRadioButton" name="radioButton_6">
@@ -225,7 +225,7 @@
            </rect>
           </property>
           <property name="maximum">
-           <number>10000</number>
+           <number>100000</number>
           </property>
           <property name="value">
            <number>500</number>
@@ -267,7 +267,7 @@
     <signal>SetVertices(QString)</signal>
     <signal>SetFramerate(QString)</signal>
     <slot>uiSolverEuler(bool)</slot>
-    <slot>uiSolverImplicitEuler(bool)</slot>
+    <slot>uiSolverSmiImplicitEuler(bool)</slot>
     <slot>uiParticleInitializerFountain(bool)</slot>
     <slot>uiParticleInitializerWatterfall(bool)</slot>
     <slot>uiParticleInitializerSemiSphere(bool)</slot>
@@ -404,6 +404,22 @@
     <hint type="destinationlabel">
      <x>568</x>
      <y>400</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_2</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>glwidget</receiver>
+   <slot>uiSolverSmiImplicitEuler(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>702</x>
+     <y>83</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>583</x>
+     <y>68</y>
     </hint>
    </hints>
   </connection>

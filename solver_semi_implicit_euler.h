@@ -3,7 +3,7 @@
 
 #include "solver.h"
 
-class SolverImplicitEuler : public Solver
+class SolverSemiImplicitEuler : public Solver
 {
 public:
     void solve(float dt, Particle &p) const override;

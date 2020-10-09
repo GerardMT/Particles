@@ -1,6 +1,6 @@
-#include "solver_implicit_euler.h"
+#include "solver_semi_implicit_euler.h"
 
-void SolverImplicitEuler::solve(float dt, Particle &p) const
+void SolverSemiImplicitEuler::solve(float dt, Particle &p) const
 {
     p.pos_pre_ = p.pos_;
 

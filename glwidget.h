@@ -46,7 +46,7 @@ private:
     vector<Object *> objects_;
 
     Solver *solver_euler_;
-    Solver *solver_implicit_euler_;
+    Solver *solver_semi_implicit_euler_;
     Solver *solver_verlet_;
 
     ParticleInitializer *particle_initializer_fountain_;
@@ -79,7 +79,7 @@ private:
 private slots:
     void uiSolverEuler(bool v);
 
-    void uiSolverImplicitEuler(bool v);
+    void uiSolverSemiImplicitEuler(bool v);
 
     void uiSolverVerlet(bool v);
 
