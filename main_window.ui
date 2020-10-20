@@ -267,13 +267,12 @@
     <signal>SetVertices(QString)</signal>
     <signal>SetFramerate(QString)</signal>
     <slot>uiSolverEuler(bool)</slot>
-    <slot>uiSolverSmiImplicitEuler(bool)</slot>
     <slot>uiParticleInitializerFountain(bool)</slot>
     <slot>uiParticleInitializerWatterfall(bool)</slot>
-    <slot>uiParticleInitializerSemiSphere(bool)</slot>
     <slot>uiSolverVerlet(bool)</slot>
     <slot>uiNParticles(int)</slot>
     <slot>uiLifetime(double)</slot>
+    <slot>uiSolverSemiImplicitEuler(bool)</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -292,22 +291,6 @@
     <hint type="destinationlabel">
      <x>547</x>
      <y>85</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>radioButton_2</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>glwidget</receiver>
-   <slot>uiSolverImplicitEuler(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>773</x>
-     <y>91</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>561</x>
-     <y>150</y>
     </hint>
    </hints>
   </connection>
@@ -411,15 +394,15 @@
    <sender>radioButton_2</sender>
    <signal>toggled(bool)</signal>
    <receiver>glwidget</receiver>
-   <slot>uiSolverSmiImplicitEuler(bool)</slot>
+   <slot>uiSolverSemiImplicitEuler(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>702</x>
+     <x>730</x>
      <y>83</y>
     </hint>
     <hint type="destinationlabel">
-     <x>583</x>
-     <y>68</y>
+     <x>554</x>
+     <y>67</y>
     </hint>
    </hints>
   </connection>
