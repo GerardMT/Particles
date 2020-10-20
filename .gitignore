@@ -55,3 +55,6 @@ compile_commands.json
 
 # GMT
 *.user
+release/
+debug/
+*.qrc
