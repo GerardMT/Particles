@@ -45,7 +45,7 @@ Once build, simply run:
 
 ## Screenshots
 <img src="docs/screenshots/waterfall.gif" alt="Waterfall" width="30%">
-<img src="ocs/screenshots/fountain.png" alt="Fountain" width="30%">
+<img src="docs/screenshots/fountain.png" alt="Fountain" width="30%">
 <img src="docs/screenshots/semi_sphere.png" alt="Semi-sphere" width="30%">
 
 ## Other
