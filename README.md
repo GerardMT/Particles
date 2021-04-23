@@ -44,6 +44,7 @@ Once build, simply run:
 	../build/release/particles
 
 ## Screenshots
+![Watterfall](docs/screenshots/waterfall.gif) ![Fountain](docs/screenshots/fountain.png) ![Semi Sphere](docs/screenshots/semi_sphere.png)
 
 ## Other
 Have a look at my other physics based projects:
@@ -51,4 +52,4 @@ Have a look at my other physics based projects:
 - [Cloth](https://github.com/GerardMT/Cloth)
 - [Rigid-Bodies](https://github.com/GerardMT/Rigid-Bodies)
 
-If you want to fork this project I recomend using [Cloth](https://github.com/GerardMT/Cloth) as a base, which includes all the code from [Particles](https://github.com/GerardMT/Particles) and [Hair](https://github.com/GerardMT/Hair), including some improvements.
+If you want to fork this project I recomend cloning [Cloth](https://github.com/GerardMT/Cloth), which includes all the code from [Particles](https://github.com/GerardMT/Particles) and [Hair](https://github.com/GerardMT/Hair), including some improvements.
