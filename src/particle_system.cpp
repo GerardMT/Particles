@@ -64,12 +64,12 @@ void ParticleSystem::particleInitializer(ParticleInitializer &i)
 void ParticleSystem::initialieGL()
 {
     string vert_str;
-    readFile("../shader/particle.vert", vert_str);
+    readFile("../../res/shader/particle.vert", vert_str);
     program_.addShaderFromSourceCode(QOpenGLShader::Vertex, vert_str.c_str());
     cout << program_.log().toUtf8().constData() << endl;
 
     string frag_str;
-    readFile("../shader/particle.frag", frag_str);
+    readFile("../../res/shader/particle.frag", frag_str);
     program_.addShaderFromSourceCode(QOpenGLShader::Fragment, frag_str.c_str());
     cout << program_.log().toUtf8().constData() << endl;
 
