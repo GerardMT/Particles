@@ -44,7 +44,9 @@ Once build, simply run:
 	../build/release/particles
 
 ## Screenshots
-![Watterfall](docs/screenshots/waterfall.gif) ![Fountain](docs/screenshots/fountain.png) ![Semi Sphere](docs/screenshots/semi_sphere.png)
+<img src="docs/screenshots/waterfall.gif" alt="Waterfall" width="30%">
+<img src="ocs/screenshots/fountain.png" alt="Fountain" width="30%">
+<img src="docs/screenshots/semi_sphere.png" alt="Semi-sphere" width="30%">
 
 ## Other
 Have a look at my other physics based projects:
