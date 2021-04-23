@@ -16,7 +16,7 @@ A simple CPU driven particles system with an OpenGL renderer. Used Qt 5 as the b
 	- Drag
 
 ## Known issues
-- Some particles scape the box on the edges/vertices. This is due to not cheking for a collision again once the particle has been corrected. This can be easly fix in exchange of performance.
+- Some particles scape the box on the edges/vertices. This is due to not cheking for a collision again once the particle has been corrected. This can be easly fix at the cost of performance.
 
 ## Requirments
 The software requires the following libraries to be installed:
