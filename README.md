@@ -39,12 +39,13 @@ Compile the code:
 The builds can be found at `build/`.
 
 ## Run
-Once build, simply run:
+Once build, run the project from the build directory:
 
-	../build/release/particles
+	cd ../build/release/
+	./particles
 
 ## Screenshots
-<img src="docs/screenshots/waterfall.gif" alt="Waterfall" width="45%"> <img src="docs/screenshots/fountain.png" alt="Fountain" width="45%">
+<img src="docs/screenshots/waterfall.gif" alt="Waterfall" width="45%"> <img src="docs/screenshots/fountain.gif" alt="Fountain" width="45%">
 
 ## Other
 Have a look at my other physics based projects:
