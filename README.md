@@ -1,5 +1,5 @@
 # Particles
-A simple CPU driven particles system with an OpenGL renderer. Used Qt 5 as the base framework.
+A simple CPU driven particles system with an OpenGL renderer. Qt 5 used as the base framework.
 
 ## Features
 - Control the camera (`WASD` keys for movement, and `mouse left click` + `mouse movement` for orientation).
